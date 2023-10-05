@@ -14,34 +14,39 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
     fseek(inp_file, 0, SEEK_END); //find size of file
     size_t size = ftell(inp_file);
     rewind(inp_file); //reset file pointer
-
+    
     size_t block_size = size / n; //divide size of file by n
     size_t last_block_size = block_size + size % n; //add remainder for last blcok size
 
     FILE *fptr;
-    char* buffer = (char*)malloc(block_size); 
+    char buffer[1000000];
     int i;
     //iterate thorugh n-1 files and write data to the blocks
     for(i = 0; i < n-1; i++){
         fread(buffer, 1, block_size, inp_file);
         char filename[64];
-        sprintf(filename, "%s//%d.txt", blocks_folder, i+1);;
+        sprintf(filename, "%s//%d.txt", blocks_folder, i);;
         fptr = fopen(filename, "w");
         fprintf(fptr, "%s", buffer);
         
         fclose(fptr);
     }
+
     //calculate last file
-    fread(buffer, 1, last_block_size, inp_file);
+    char last_buffer[1000000];
+
+    fread(last_buffer, 1, last_block_size, inp_file);
     char filename[64];
-    sprintf(filename, "%s//%d.txt", blocks_folder, i+1);;
-    fptr = fopen(filename, "a");
-    fprintf(fptr, "%s", buffer);
+    sprintf(filename, "%s//%d.txt", blocks_folder, i);;
+    fptr = fopen(filename, "w");
+    fprintf(fptr, "%s", last_buffer);
+
+    fclose(fptr);
 
     fclose(inp_file);
-    free(buffer);
-}
 
+    
+}
 
 // ##### DO NOT MODIFY THIS FUNCTION #####
 void setup_output_directory(char *block_folder, char *hash_folder) {
