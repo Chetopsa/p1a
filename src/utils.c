@@ -13,7 +13,7 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
     FILE* inp_file = fopen(input_file, "r"); //open in read mode
     fseek(inp_file, 0, SEEK_END); //find size of file
     size_t size = ftell(inp_file);
-    rewind(inp_file);
+    rewind(inp_file); //reset file pointer
 
     size_t block_size = size / n; //divide size of file by n
     size_t last_block_size = block_size + size % n; //add remainder for last blcok size
@@ -21,6 +21,7 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
     FILE *fptr;
     char* buffer = (char*)malloc(block_size); 
     int i;
+    //iterate thorugh n-1 files and write data to the blocks
     for(i = 0; i < n-1; i++){
         fread(buffer, 1, block_size, inp_file);
         char filename[64];

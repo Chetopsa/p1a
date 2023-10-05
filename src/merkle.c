@@ -19,10 +19,7 @@ int main(int argc, char* argv[]) {
     
     char *input_file = argv[1];
     int n = atoi(argv[2]);
-    printf("%d\n", n);
-    printf("%s\n", input_file);
-
-
+    
     // ##### DO NOT REMOVE #####
     setup_output_directory(blocks_folder, hashes_folder);
 
