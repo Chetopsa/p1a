@@ -18,7 +18,8 @@ Initialization:
     Determine the total number of data blocks.
     Spawn the root process in merkele and run child_process.c
 
-How to spawn the child proccesses:
+How to spawn child proccesses:
+
     id = 0
     while(id < n - 1)
         left_pid = fork()
