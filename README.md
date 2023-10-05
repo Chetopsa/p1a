@@ -12,13 +12,13 @@
 **merkle.c** read in the command line arguments and added them to the 
 **utils.c** implemented the partion_file_data;
 
-## implementing merkel tree
+# implementing merkel tree
 Initialization:
 
     Determine the total number of data blocks.
     Spawn the root process in merkele and run child_process.c
 
-**how to spawn the child proccesses**
+How to spawn the child proccesses:
     id = 0
     while(id < n - 1)
         left_pid = fork()
