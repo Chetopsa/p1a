@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
 
     // TODO: If the current process is a leaf process, read in the associated block file 
     // and compute the hash of the block.
+    
 
     // TODO: If the current process is not a leaf process, spawn two child processes using  
     // exec() and ./child_process. 
