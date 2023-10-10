@@ -5,12 +5,18 @@
 **Group Members:**
 - Chesont Opsasnick (opsas002)
 - Ahmed Kadar (kadar008)
+- Ahmed-dahir Dayib (dayib007)
 
-**CSELabs Computer Used for Testing:** login03.cselabs.umn.edu
+**CSELabs Computer Used for Testing:** csel-kh1250-01.cselabs.umn.edu
 
 # Changes
-**merkle.c** read in the command line arguments and added them to the 
+**merkle.c** read in the command line arguments and created root child_process 
 **utils.c** implemented the partion_file_data;
+**child_process.c** implemented the main function
+
+# Contributions
+
+
 
 # implementing merkel tree
 Initialization:
@@ -20,21 +26,23 @@ Initialization:
 
 How to spawn child proccesses:
 
-    if id > N-1 :
+    if id < N-1 :
+    fork()
      ./child_process using exec() //left
+    fork()
      ./child_process using exec() //right
 
 **within the child proccesses**
     Base Case:
 
-    If id < N-1, then you're at a leaf node.
+    If id > N-1, then you're at a leaf node.
     Hash the single data block assigned to this leaf.
     Write the hash to an output file.
     Exit the process.
 
     Recursive Case:
 
-    If id > n-1:
+    If id < n-1:
 
     Create 2 new child processes and distribute the data blocks evenly between these two subtrees.
     
@@ -50,4 +58,9 @@ How to spawn child proccesses:
 
     Root process waits for child processes to finish.
     Then combines and hashes their output hashes and writes final hash to file
+
+**How Our psuedo code changed:**
+The main process was the same, but we had to correct some minor errors, 
+like including the fork()
+
     
