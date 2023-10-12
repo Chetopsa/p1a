@@ -36,9 +36,15 @@ int main(int argc, char* argv[]) {
         char hash_file[PATH_MAX];
         sprintf(hash_file, "%s/%d.out", hashes_folder, child_id);
         fptr = fopen(hash_file, "w");
+        if(fptr == NULL){
+            printf("failed to open file\n");
+            return 1;
+        }
+    
         fwrite(block_hash, (SHA256_BLOCK_SIZE * 2 + 1) ,1, fptr);
         fclose(fptr);
     }
+
     
     
 
@@ -67,6 +73,7 @@ int main(int argc, char* argv[]) {
         wait(NULL);
         // TODO: Retrieve the two hashes from the two child processes from output/hashes/
         // and compute and output the hash of the concatenation of the two hashes.
+        
         //read left hash
         char left_hash_file[PATH_MAX];
         int left_num = (child_id*2 + 1);
@@ -74,6 +81,10 @@ int main(int argc, char* argv[]) {
 
         char left_hash[SHA256_BLOCK_SIZE * 2 + 1];
         fptr = fopen(left_hash_file, "r");
+        if(fptr == NULL){
+            printf("failed to open file\n");
+            return 1;
+        }
         fread(left_hash, 1, (SHA256_BLOCK_SIZE * 2 + 1), fptr);
         fclose(fptr);
 
@@ -84,6 +95,10 @@ int main(int argc, char* argv[]) {
 
         char right_hash[SHA256_BLOCK_SIZE * 2 + 1];
         fptr = fopen(right_hash_file, "r");
+        if(fptr == NULL){
+            printf("failed to open file\n");
+            return 1;
+        }
         fread(right_hash, 1, (SHA256_BLOCK_SIZE * 2 + 1), fptr);
         fclose(fptr);
 

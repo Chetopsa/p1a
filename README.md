@@ -3,7 +3,7 @@
 **Project Group:** 128
 
 **Group Members:**
-- Chesont Opsasnick (opsas002)
+- Cheston Opsasnick (opsas002)
 - Ahmed Kadar (kadar008)
 - Ahmed-dahir Dayib (dayib007)
 
@@ -15,8 +15,9 @@
 **child_process.c** implemented the main function
 
 # Contributions
-
-
+Ahmed-dahir Dayib - Wrote Read me and Psuedo code, helped debug and wrote error checks
+Ahmed Kadar - Wrote parition_file_data_implmentation
+Cheston Opsasnick - Wrote child_proccess.c
 
 # implementing merkel tree
 Initialization:
@@ -61,6 +62,6 @@ How to spawn child proccesses:
 
 **How Our psuedo code changed:**
 The main process was the same, but we had to correct some minor errors, 
-like including the fork()
+like including the fork() and switching a comparison, (>) to (<)
 
     

@@ -10,6 +10,10 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
     }
     // Hint: Use fseek() and ftell() to determine the size of the file
     FILE* inp_file = fopen(input_file, "r"); //open in read mode
+    if(inp_file == NULL){
+        printf("failed to open file\n");
+        return;
+    }
     fseek(inp_file, 0, SEEK_END); //find size of file
     size_t size = ftell(inp_file);
     rewind(inp_file); //reset file pointer
@@ -19,7 +23,7 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
 
     FILE *fptr;
     
-    // char buffer[1000000];
+    // char buffer allocate;
     char *buffer = (char *)malloc(sizeof(size_t) * block_size);
     int i;
     //iterate thorugh n-1 files and write data to the blocks
@@ -31,7 +35,6 @@ void partition_file_data(char *input_file, int n, char *blocks_folder) {
         fptr = fopen(filename, "w");
         fwrite(buffer, block_size, 1, fptr);
         fclose(fptr);
-        
     }
     free(buffer);
 
